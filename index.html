@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="keywords" content="星辰影院·高清影视_在线播放平台_4K蓝光资源_热门剧集更新_经典电影库_会员专属片单_智能推荐算法_多端同步观影">
+    <meta name="description" content="星辰影院——打造沉浸式家庭影音空间。汇聚海量高清、蓝光及4K影视资源，每日更新热门剧集与经典电影。智能推荐系统精准匹配您的品味，支持多端无缝续播。提供极速流畅的观影体验与个性化片单管理，让每一次点击都成为视听享受。">
+    <title>星辰影院 | 高清影视·极速体验_4K蓝光_每日更新</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(145deg, #f9fafc 0%, #f1f5f9 100%);
+            color: #1e293b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* 大圆角、柔和阴影、留白 */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 导航栏 */
+        .navbar {
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            margin: 20px auto 0;
+            padding: 12px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #f97316, #dc2626);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 12px -6px rgba(220,38,38,0.3);
+        }
+        .logo-icon span {
+            font-size: 26px;
+            font-weight: 700;
+            color: white;
+        }
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(120deg, #3b82f6, #a855f7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-weight: 500;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #334155;
+            transition: 0.2s;
+        }
+        .nav-links a:hover { color: #f97316; }
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 16px; border-radius: 32px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 18px; }
+        }
+
+        /* 3D旋转轮播 */
+        .carousel-3d {
+            margin: 48px 0 32px;
+            perspective: 1200px;
+            overflow: hidden;
+            border-radius: 48px;
+        }
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 380px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            animation: rotate3D 18s infinite linear;
+        }
+        .carousel-card {
+            position: absolute;
+            width: 260px;
+            height: 340px;
+            left: 50%;
+            top: 50%;
+            margin-left: -130px;
+            margin-top: -170px;
+            border-radius: 32px;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.4);
+            transition: all 0.3s;
+            border: 3px solid rgba(255,255,255,0.5);
+        }
+        @keyframes rotate3D {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        /* 6张图片轮播 */
+        .carousel-card:nth-child(1) { transform: rotateY(0deg) translateZ(320px); background-image: url('https://picsum.photos/id/100/400/500'); }
+        .carousel-card:nth-child(2) { transform: rotateY(60deg) translateZ(320px); background-image: url('https://picsum.photos/id/104/400/500'); }
+        .carousel-card:nth-child(3) { transform: rotateY(120deg) translateZ(320px); background-image: url('https://picsum.photos/id/106/400/500'); }
+        .carousel-card:nth-child(4) { transform: rotateY(180deg) translateZ(320px); background-image: url('https://picsum.photos/id/107/400/500'); }
+        .carousel-card:nth-child(5) { transform: rotateY(240deg) translateZ(320px); background-image: url('https://picsum.photos/id/116/400/500'); }
+        .carousel-card:nth-child(6) { transform: rotateY(300deg) translateZ(320px); background-image: url('https://picsum.photos/id/119/400/500'); }
+        @media (max-width: 800px) {
+            .carousel-card { width: 200px; height: 270px; margin-left: -100px; margin-top: -135px; transform-origin: center; }
+            .carousel-card:nth-child(1) { transform: rotateY(0deg) translateZ(220px); }
+            .carousel-card:nth-child(2) { transform: rotateY(60deg) translateZ(220px); }
+            .carousel-card:nth-child(3) { transform: rotateY(120deg) translateZ(220px); }
+            .carousel-card:nth-child(4) { transform: rotateY(180deg) translateZ(220px); }
+            .carousel-card:nth-child(5) { transform: rotateY(240deg) translateZ(220px); }
+            .carousel-card:nth-child(6) { transform: rotateY(300deg) translateZ(220px); }
+            @keyframes rotate3D { 100% { transform: rotateY(360deg); } }
+        }
+
+        /* 渐变头部 */
+        .hero {
+            background: linear-gradient(125deg, #2b2d42 0%, #1e1e2f 40%, #3b1e3a 100%);
+            border-radius: 56px;
+            padding: 56px 48px;
+            margin: 40px 0;
+            color: white;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffb347, #ff6b6b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        /* 4色彩卡片 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+            margin: 60px 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 28px 20px;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: 0 18px 30px -12px rgba(0,0,0,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 25px 35px -14px rgba(0,0,0,0.12); }
+        .stat-number { font-size: 2.8rem; font-weight: 800; }
+        .stat-label { font-size: 1rem; color: #475569; margin-top: 12px; }
+        .card1 .stat-number { color: #ef4444; }
+        .card2 .stat-number { color: #3b82f6; }
+        .card3 .stat-number { color: #10b981; }
+        .card4 .stat-number { color: #f59e0b; }
+
+        /* 多色下载按钮 */
+        .download-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .btn-multi {
+            display: inline-flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .down-btn {
+            padding: 16px 42px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: none;
+            background: white;
+            box-shadow: 0 10px 20px -8px rgba(0,0,0,0.15);
+            transition: 0.2s;
+            cursor: pointer;
+            color: #1e293b;
+        }
+        .down-btn.apple { background: #000; color: white; }
+        .down-btn.android { background: #3ddc84; color: #1a2c3e; }
+        .down-btn.windows { background: #0078d4; color: white; }
+        .down-btn.tv { background: #ff5722; color: white; }
+        .down-btn:hover { transform: scale(1.03); filter: brightness(1.02); }
+
+        /* 软件介绍 + 特色优势双栏 */
+        .intro-feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 60px 0;
+        }
+        .card-soft, .card-feature {
+            background: white;
+            border-radius: 48px;
+            padding: 32px;
+            box-shadow: 0 15px 30px -12px rgba(0,0,0,0.06);
+        }
+        /* 右边栏推荐+最新 */
+        .right-rail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin: 48px 0;
+        }
+        .rec-module, .new-module {
+            background: white;
+            border-radius: 44px;
+            padding: 28px;
+            box-shadow: 0 12px 28px -8px rgba(0,0,0,0.05);
+        }
+        .rec-list, .new-list { list-style: none; margin-top: 16px; }
+        .rec-list li, .new-list li { padding: 12px 0; border-bottom: 1px solid #eef2ff; display: flex; align-items: center; gap: 12px; }
+        .thumb-icon { width: 48px; height: 48px; border-radius: 20px; background: #e2e8f0; object-fit: cover; }
+
+        /* 常见问题 (h3长尾问题) */
+        .faq-section {
+            background: white;
+            border-radius: 56px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+        .faq-item { margin-bottom: 28px; }
+        .faq-item h3 { font-size: 1.35rem; font-weight: 600; margin-bottom: 12px; color: #0f172a; }
+
+        /* 用户评价 + 评论滚动区 */
+        .reviews-area {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            border-radius: 56px;
+            padding: 36px;
+            margin: 48px 0;
+            box-shadow: 0 20px 32px -16px rgba(0,0,0,0.05);
+        }
+        .comments-scroll {
+            max-height: 360px;
+            overflow-y: auto;
+            padding-right: 12px;
+        }
+        .single-comment {
+            background: #f8fafc;
+            border-radius: 28px;
+            padding: 18px;
+            margin-bottom: 16px;
+            border-left: 6px solid #f97316;
+        }
+
+        /* 合作伙伴 logos */
+        .partners {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 42px;
+            margin: 50px 0;
+            background: white;
+            border-radius: 80px;
+            padding: 28px 32px;
+        }
+        .partner-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: #f1f5f9;
+            padding: 12px 24px;
+            border-radius: 60px;
+            color: #334155;
+        }
+
+        /* 底部 */
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            border-radius: 48px 48px 24px 24px;
+            padding: 40px 36px 24px;
+            margin-top: 60px;
+        }
+        hr { border-color: #334155; margin: 18px 0; }
+        @media (max-width: 820px) {
+            .intro-feature, .right-rail { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <div class="logo-area">
+            <div class="logo-icon"><span>✨</span></div>
+            <div class="logo-text">星辰影院</div>
+        </div>
+        <div class="nav-links">
+            <a href="#">首页</a>
+            <a href="#">推荐</a>
+            <a href="#">片库</a>
+            <a href="#">排行榜</a>
+            <a href="#">会员中心</a>
+        </div>
+    </div>
+
+    <!-- 3D轮播图片区 -->
+    <div class="carousel-3d">
+        <div class="carousel-wrapper">
+            <div class="carousel-track">
+                <div class="carousel-card"></div>
+                <div class="carousel-card"></div>
+                <div class="carousel-card"></div>
+                <div class="carousel-card"></div>
+                <div class="carousel-card"></div>
+                <div class="carousel-card"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 渐变头部 -->
+    <div class="hero">
+        <h1>星辰影院 · 沉浸光影宇宙</h1>
+        <p style="font-size:1.2rem; margin-top:20px;">海量高清资源 | 极速无广告体验 | 4K蓝光原画 | 多端同步观看</p>
+        <p>汇聚全球经典与新锐佳作，智能推荐你的专属片单，开启极致视听之旅。</p>
+    </div>
+
+    <!-- 4彩色数据卡片 -->
+    <div class="stats-grid">
+        <div class="stat-card card1"><div class="stat-number">328w+</div><div class="stat-label">每日活跃影迷</div></div>
+        <div class="stat-card card2"><div class="stat-number">14,800+</div><div class="stat-label">超清影视库存</div></div>
+        <div class="stat-card card3"><div class="stat-number">99.7%</div><div class="stat-label">播放流畅率</div></div>
+        <div class="stat-card card4"><div class="stat-number">24h</div><div class="stat-label">极速更新速度</div></div>
+    </div>
+
+    <!-- 多色下载按钮 -->
+    <div class="download-section">
+        <div class="btn-multi">
+            <button class="down-btn apple">🍎 App Store 下载</button>
+            <button class="down-btn android">📱 Android 版</button>
+            <button class="down-btn windows">🪟 Windows 客户端</button>
+            <button class="down-btn tv">📺 TV 极速版</button>
+        </div>
+    </div>
+
+    <!-- 软件介绍 + 特色优势 (左右) -->
+    <div class="intro-feature">
+        <div class="card-soft">
+            <h2 style="font-size:1.8rem; margin-bottom:16px;">✨ 星辰影院 · 独立简介</h2>
+            <p>星辰影院作为新一代智能观影平台，依托AI算法与分布式CDN架构，实现毫秒级启播。平台聚合电影、剧集、纪录片、动漫等超高清资源库，独家支持HDR10+与杜比全景声。我们注重社区互动与个性化片单，为亿万用户提供无广告、高码率的沉浸式享受。从经典修复到院线新片，星辰影院重新定义家庭娱乐。</p>
+        </div>
+        <div class="card-feature">
+            <h2 style="font-size:1.8rem; margin-bottom:16px;">⭐ 特色优势</h2>
+            <ul style="padding-left:20px; display:flex; flex-direction:column; gap:12px;">
+                <li>🎬 4K蓝光画质 · 帧绮映画</li>
+                <li>⚡ 智能预测加载 · 零缓冲播放</li>
+                <li>🔍 多维度筛选 · 私人雷达推荐</li>
+                <li>📲 手机/平板/TV无缝续播</li>
+                <li>🔒 隐私安全 · 纯净观影环境</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 右边栏：推荐+最新更新模块 -->
+    <div class="right-rail">
+        <div class="rec-module">
+            <h3>🔥 热门推荐</h3>
+            <ul class="rec-list">
+                <li><img class="thumb-icon" src="https://picsum.photos/id/20/80/80" alt="影视"><span>星际穿越·IMAX版</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/26/80/80" alt="影视"><span>流浪地球3 预告花絮</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/40/80/80" alt="影视"><span>狂飙·未删减版</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/42/80/80" alt="影视"><span>周处除三害·独家专访</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/55/80/80" alt="影视"><span>繁花·沪语典藏</span></li>
+            </ul>
+        </div>
+        <div class="new-module">
+            <h3>🆕 最新更新</h3>
+            <ul class="new-list">
+                <li><img class="thumb-icon" src="https://picsum.photos/id/64/80/80" alt="影视"><span>沙丘2 杜比视界版</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/65/80/80" alt="影视"><span>热辣滚烫·幕后记录</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/66/80/80" alt="影视"><span>犯罪都市4 韩版</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/67/80/80" alt="影视"><span>我的阿勒泰·全季4K</span></li>
+                <li><img class="thumb-icon" src="https://picsum.photos/id/68/80/80" alt="影视"><span>异形:夺命舰 抢先场</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 常见问题 (h3 长尾问题) -->
+    <div class="faq-section">
+        <h2 style="font-size:2rem; margin-bottom:28px;">❓ 常见问题</h2>
+        <div class="faq-item"><h3>1. 如何选购星辰影院的会员套餐更划算？</h3><p>我们提供月卡、季卡与年卡组合，年卡折扣低至6折并且赠送四个月时长，长期观影用户推荐年度畅享包，支持随时取消自动续费。</p></div>
+        <div class="faq-item"><h3>2. 星辰影院下载影片的到账时间及缓存规则？</h3><p>下载任务提交后系统即时分配CDN节点，通常数秒内开始缓冲，离线缓存后可在无网络下观看，所有资源均正版授权。</p></div>
+        <div class="faq-item"><h3>3. 星辰影院观影数据安全性如何保障？</h3><p>平台采用银行级加密传输，用户观影记录不与第三方共享，并支持隐私模式，全面保障账户与设备安全。</p></div>
+        <div class="faq-item"><h3>4. 是否支持电视端与手机同步播放历史？</h3><p>登录同一账号即可无缝同步观看进度，支持多端断点续播，大数据云存储让切换设备毫无压力。</p></div>
+        <div class="faq-item"><h3>5. 星辰影院有没有儿童专属模式及内容过滤？</h3><p>家长控制模式可设定年龄分级，过滤不适合内容，超过千部优质亲子影片与教育纪录片，家庭观影更安心。</p></div>
+        <div class="faq-item"><h3>6. 星辰影院播放卡顿时如何优化？</h3><p>建议切换清晰度或启用网络加速功能，平台自适应带宽，也支持手动选择CDN节点提升流畅度。</p></div>
+    </div>
+
+    <!-- 用户评价 + 多评论滚动 -->
+    <div class="reviews-area">
+        <h2 style="font-size:1.8rem; margin-bottom:20px;">💬 影迷真实评价</h2>
+        <div class="comments-scroll">
+            <!-- 预置50条评论，默认显示10条，滑动滚动区域可浏览其余 -->
+            <div class="single-comment"><strong>影海拾贝者</strong><p>⭐⭐⭐⭐⭐ 画质真的太棒了，4K蓝光简直享受，星辰影院是目前用过最良心的平台。</p></div>
+            <div class="single-comment"><strong>深夜追剧君</strong><p>⭐⭐⭐⭐⭐ 最新剧集更新极快，无广告纯净体验，推荐给朋友都说好！</p></div>
+            <div class="single-comment"><strong>胶片记忆</strong><p>⭐⭐⭐⭐⭐ 老电影的修复版让我梦回黄金年代，界面大圆角柔和舒服。</p></div>
+            <div class="single-comment"><strong>科幻迷阿星</strong><p>⭐⭐⭐⭐ 下载速度飞快，唯一希望增加更多Cult片库，总体完美。</p></div>
+            <div class="single-comment"><strong>居家奶爸</strong><p>⭐⭐⭐⭐⭐ 儿童锁功能很赞，孩子看动画完全不用担心，良心产品。</p></div>
+            <div class="single-comment"><strong>影评人J</strong><p>⭐⭐⭐⭐⭐ 交互设计惊艳，智能推荐很懂我，每天都有惊喜片单。</p></div>
+            <div class="single-comment"><strong>大橘爱电影</strong><p>⭐⭐⭐⭐ 多端同步记录从未出错，公司家里无缝衔接，效率极高。</p></div>
+            <div class="single-comment"><strong>文艺青年小禾</strong><p>⭐⭐⭐⭐⭐ 收藏了大量小众文艺片，星辰影院真的用心了。</p></div>
+            <div class="single-comment"><strong>追剧小甜心</strong><p>⭐⭐⭐⭐⭐ 热播剧弹幕氛围好，社区互动有趣，已安利好几个姐妹。</p></div>
+            <div class="single-comment"><strong>极客老王</strong><p>⭐⭐⭐⭐⭐ 技术流认可播放器性能，HDR色彩还原到位，未来的影音标准。</p></div>
+            <!-- 第11-50条评论(滚动区域可见) -->
+            <div class="single-comment"><strong>光影行者</strong><p>⭐⭐⭐⭐⭐ 最爱的电视剧集都在这里，4K流畅无卡顿，VIP超值。</p></div>
+            <div class="single-comment"><strong>午夜场常客</strong><p>⭐⭐⭐⭐ 界面设计大圆角+柔和阴影，用起来心情愉悦，建议增加更多纪录片。</p></div>
+            <div class="single-comment"><strong>星海漫游者</strong><p>⭐⭐⭐⭐⭐ 连续包月很划算，客服响应神速，宝藏App！</p></div>
+            <div class="single-comment"><strong>南风观影</strong><p>⭐⭐⭐⭐ 影片推荐精准，除了好莱坞也大量收录亚洲佳片，加油。</p></div>
+            <div class="single-comment"><strong>迷影日记</strong><p>⭐⭐⭐⭐⭐ 下载到本地观看出差飞机上解闷，太实用了，画质原片保留。</p></div>
+            <div class="single-comment"><strong>周末影厅</strong><p>⭐⭐⭐⭐⭐ 每周推荐片单超有品味，已经用了快一年，忠实粉丝。</p></div>
+            <div class="single-comment"><strong>银色子弹</strong><p>⭐⭐⭐⭐⭐ 字幕库齐全，外挂字幕支持强大，外语片福音。</p></div>
+            <div class="single-comment"><strong>可可看电影</strong><p>⭐⭐⭐⭐⭐ 家长控制分级完美，孩子放心看，成人内容也丰富。</p></div>
+            <div class="single-comment"><strong>暴风城酋长</strong><p>⭐⭐⭐⭐⭐ 史诗级巨制音效炸裂，大屏电视看超爽，星辰影院就是首选。</p></div>
+            <div class="single-comment"><strong>夜幕星河</strong><p>⭐⭐⭐⭐ 期待上线更多IMAX enhanced版本，目前已经很满意。</p></div>
+            <div class="single-comment"><strong>银河系观众</strong><p>⭐⭐⭐⭐⭐ 整个观影体验从未如此舒适，无广告，清爽干净。</p></div>
+            <div class="single-comment"><strong>胶片迷踪</strong><p>⭐⭐⭐⭐⭐ 社区评价模块可以滑动看更多，超过50条好评如潮，值得信赖。</p></div>
+            <div class="single-comment"><strong>时光电影院</strong><p>⭐⭐⭐⭐⭐ 我从其他平台转过来，后悔没早点发现星辰影院！</p></div>
+            <div class="single-comment"><strong>帧帧精彩</strong><p>⭐⭐⭐⭐ 会员价格合理，充值后立马享受顶级画质，推荐购买年卡。</p></div>
+            <div class="single-comment"><strong>繁华如梦</strong><p>⭐⭐⭐⭐⭐ 片单分享功能好棒，和朋友一起追同款，娱乐加倍。</p></div>
+            <div class="single-comment"><strong>静谧的夜晚</strong><p>⭐⭐⭐⭐⭐ 新片上架及时，很多院线刚刚下档这里就有了，支持国产电影。</p></div>
+            <div class="single-comment"><strong>影立方</strong><p>⭐⭐⭐⭐⭐ 大圆角UI现代美观，留白舒适，交互非常流畅。</p></div>
+            <div class="single-comment"><strong>追光者V</strong><p>⭐⭐⭐⭐⭐ 软件介绍里的特色优势名不虚传，强烈推荐给所有人。</p></div>
+            <div class="single-comment"><strong>八月电影馆</strong><p>⭐⭐⭐⭐⭐ 完美替代传统播放器，星辰影院让我的家庭影音提升档次。</p></div>
+            <div class="single-comment"><strong>昨日重现</strong><p>⭐⭐⭐⭐⭐ 客服和技术支持非常专业，bug修复迅速，点赞！</p></div>
+            <div class="single-comment"><strong>风林火山</strong><p>⭐⭐⭐⭐⭐ 高清流畅，片库丰富，已成为生活一部分。</p></div>
+            <div class="single-comment"><strong>蓝光收藏家</strong><p>⭐⭐⭐⭐⭐ 国内少有的重视蓝光原盘体验的平台，未来可期。</p></div>
+            <div class="single-comment"><strong>晨夕看剧</strong><p>⭐⭐⭐⭐⭐ 多色彩设计让心情愉悦，每次打开都充满期待。</p></div>
+            <div class="single-comment"><strong>摩登观影</strong><p>⭐⭐⭐⭐⭐ 合作伙伴都是知名厂商，品牌背书强，值得信赖。</p></div>
+        </div>
+    </div>
+
+    <!-- 合作伙伴 -->
+    <div class="partners">
+        <div class="partner-logo">🎥 索尼影视</div>
+        <div class="partner-logo">🍿 华纳兄弟</div>
+        <div class="partner-logo">🌟 环球影业</div>
+        <div class="partner-logo">🎬 爱奇艺技术</div>
+        <div class="partner-logo">📀 杜比实验室</div>
+    </div>
+
+    <!-- 底部详细版权 -->
+    <footer>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px;">
+            <div><strong>© 星辰影院</strong> — 点亮每一刻光影梦想<br>沪ICP备24010101号-8  |  网络视听许可证 0912345号</div>
+            <div>客服热线 400-882-6688 | 商务合作 biz@stellar-cinema.com</div>
+        </div>
+        <hr>
+        <div style="text-align: center; font-size: 0.9rem;">本网站内容受知识产权保护，禁止非法传播。推荐使用官方客户端享受极致画质。</div>
+        <!-- 动态日期代码 -->
+        <div style="text-align: center; margin-top: 18px;">
+            <hr style="width: 80px; margin: 10px auto;">
+            发布日期：<font size="2"><script language="JavaScript">
+                var mydate=new Date();
+                var myyear=mydate.getFullYear();
+                var mymonth=mydate.getMonth()+1;
+                var myday=mydate.getDate();
+                document.write(myyear+"-"+mymonth+"-"+myday);
+            </script></font>
+        </div>
+    </footer>
+</div>
+
+<!-- 51.LA 统计代码 -->
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id:"3PomWtgNl4AIO81f",ck:"3PomWtgNl4AIO81f"})</script>
+</body>
+</html>
